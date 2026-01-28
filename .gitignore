@@ -63,8 +63,12 @@ venv.bak/
 
 # Banking data files
 bank_data.json
+demo_bank.json
 *.db
 *.sqlite
+
+# Demo and test files
+demo.py
 
 # OS files
 .DS_Store
