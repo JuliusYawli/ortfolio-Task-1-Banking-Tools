@@ -62,7 +62,12 @@ class BankingCLI:
             print("❌ Name cannot be empty!")
             return
         
-        password = getpass.getpass("Enter password: ")
+        password = getpass.getpass("Enter password (min 4 characters): ")
+        
+        if len(password) < 4:
+            print("❌ Password must be at least 4 characters long!")
+            return
+        
         password_confirm = getpass.getpass("Confirm password: ")
         
         if password != password_confirm:

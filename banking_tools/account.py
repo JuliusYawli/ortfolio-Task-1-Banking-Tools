@@ -20,6 +20,9 @@ class Account:
             password: Account password (will be hashed)
             initial_balance: Starting balance (default: 0.0)
         """
+        if len(password) < 4:
+            raise ValueError("Password must be at least 4 characters long")
+        
         self.account_number = account_number
         self.account_holder = account_holder
         self.password_hash = self._hash_password(password)

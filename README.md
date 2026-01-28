@@ -29,7 +29,7 @@ cd ortfolio-Task-1-Banking-Tools
 
 Run the application:
 ```bash
-python main.py
+python3 main.py
 ```
 
 ### Main Features
@@ -86,9 +86,12 @@ Account data is stored in `bank_data.json` in the project root directory. This f
 ## Security Features
 
 - **Password Hashing**: All passwords are hashed using SHA-256
+  - Note: For production use, consider using more secure algorithms like bcrypt or PBKDF2
 - **Authentication Required**: Must login to access account operations
 - **Transfer Verification**: Password required for money transfers
 - **Input Validation**: All inputs are validated before processing
+- **Password Requirements**: Minimum 4 characters
+- **Self-Transfer Prevention**: Cannot transfer money to the same account
 
 ## Project Structure
 
@@ -108,12 +111,13 @@ ortfolio-Task-1-Banking-Tools/
 
 Run the test suite:
 ```bash
-python -m pytest tests/
+python3 tests/test_account.py
+python3 tests/test_bank.py
 ```
 
-Or run tests with coverage:
+Or use the setup script which runs all tests:
 ```bash
-python -m pytest tests/ --cov=banking_tools --cov-report=html
+./setup.sh
 ```
 
 ## Contributing

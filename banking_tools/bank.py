@@ -2,7 +2,7 @@
 
 import json
 import os
-from typing import Optional, List, Dict
+from typing import Optional, List, Dict, Tuple
 from .account import Account
 
 
@@ -53,16 +53,26 @@ class Bank:
         Returns:
             True if account created successfully, False if account already exists
         """
+        if not account_number or not account_number.strip():
+            return False
+        
+        if not account_holder or not account_holder.strip():
+            return False
+        
         if account_number in self.accounts:
             return False
         
         if initial_balance < 0:
             return False
         
-        account = Account(account_number, account_holder, password, initial_balance)
-        self.accounts[account_number] = account
-        self.save_data()
-        return True
+        try:
+            account = Account(account_number, account_holder, password, initial_balance)
+            self.accounts[account_number] = account
+            self.save_data()
+            return True
+        except ValueError:
+            # Password validation failed
+            return False
     
     def authenticate(self, account_number: str, password: str) -> Optional[Account]:
         """
@@ -85,7 +95,7 @@ class Bank:
         return self.accounts.get(account_number)
     
     def transfer(self, from_account: str, to_account: str, amount: float,
-                password: str) -> tuple[bool, str]:
+                password: str) -> 'Tuple[bool, str]':
         """
         Transfer money between accounts.
         
@@ -98,6 +108,10 @@ class Bank:
         Returns:
             Tuple of (success: bool, message: str)
         """
+        # Prevent self-transfer
+        if from_account == to_account:
+            return False, "Cannot transfer to the same account"
+        
         # Authenticate source account
         source = self.authenticate(from_account, password)
         if not source:
