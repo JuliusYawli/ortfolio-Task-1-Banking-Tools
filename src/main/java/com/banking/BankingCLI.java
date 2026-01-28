@@ -281,10 +281,19 @@ public class BankingCLI {
     }
 
     /**
-     * View all accounts (admin feature).
+     * View all accounts (admin feature - requires simple password).
      */
     private void viewAllAccounts() {
-        System.out.println("\n--- All Accounts ---");
+        System.out.println("\n--- All Accounts (Admin View) ---");
+        System.out.print("Admin password: ");
+        String adminPassword = scanner.nextLine().trim();
+        
+        // Simple admin check - in production, use proper authentication
+        if (!"admin123".equals(adminPassword)) {
+            System.out.println("❌ Invalid admin password!");
+            return;
+        }
+        
         List<Map<String, Object>> accounts = bank.listAccounts();
 
         if (accounts.isEmpty()) {

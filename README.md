@@ -111,6 +111,20 @@ Account data is stored in `bank_data.json` in the project root directory. This f
 - **Input Validation**: All inputs are validated before processing
 - **Password Requirements**: Minimum 4 characters
 - **Self-Transfer Prevention**: Cannot transfer money to the same account
+- **Admin Access**: Viewing all accounts requires admin password (default: admin123)
+
+## Important Notes
+
+This is an educational project demonstrating banking concepts. For production use, consider:
+
+- Using `BigDecimal` instead of `double` for financial calculations
+- Implementing proper multi-threading support with synchronized operations
+- Using bcrypt or PBKDF2 for password hashing instead of SHA-256
+- Implementing proper admin authentication with role-based access control
+- Using a production database instead of JSON files
+- Adding audit logging for all transactions
+- Implementing session management and timeouts
+- Adding transaction rollback capabilities
 
 ## Project Structure
 
