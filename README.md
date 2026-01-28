@@ -73,15 +73,12 @@ mvn exec:java -Dexec.mainClass="com.banking.Demo"
 ## Example Usage
 
 ```
-==================================================
                BANKING TOOLS
-==================================================
 
 1. Create New Account
 2. Login to Existing Account
 3. View All Accounts (Admin)
 4. Exit
-==================================================
 
 Enter your choice: 1
 
@@ -182,3 +179,4 @@ Banking Tools Team
 ## Support
 
 For issues and questions, please open an issue on the GitHub repository.
+# Portfolio-Task-1-Banking-Tools
