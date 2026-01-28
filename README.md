@@ -1,6 +1,6 @@
 # Banking Tools
 
-A comprehensive command-line banking application with account management, transactions, and security features.
+A comprehensive command-line banking application written in Java with account management, transactions, and security features.
 
 ## Features
 
@@ -13,23 +13,42 @@ A comprehensive command-line banking application with account management, transa
 
 ## Installation
 
+### Prerequisites
+- Java 17 or higher
+- Maven 3.6 or higher
+
+### Build Instructions
+
 1. Clone the repository:
 ```bash
 git clone https://github.com/JuliusYawli/ortfolio-Task-1-Banking-Tools.git
 cd ortfolio-Task-1-Banking-Tools
 ```
 
-2. No external dependencies required! Uses Python standard library only.
+2. Build the project:
+```bash
+mvn clean package
+```
 
-## Requirements
-
-- Python 3.7 or higher
+This will create an executable JAR file: `target/banking-tools.jar`
 
 ## Usage
 
-Run the application:
+### Running the Application
+
 ```bash
-python3 main.py
+java -jar target/banking-tools.jar
+```
+
+Or using Maven:
+```bash
+mvn exec:java -Dexec.mainClass="com.banking.BankingCLI"
+```
+
+### Running the Demo
+
+```bash
+mvn exec:java -Dexec.mainClass="com.banking.Demo"
 ```
 
 ### Main Features
@@ -37,7 +56,7 @@ python3 main.py
 #### 1. Create New Account
 - Enter a unique account number
 - Provide account holder name
-- Set a secure password
+- Set a secure password (minimum 4 characters)
 - Optionally add an initial balance
 
 #### 2. Login
@@ -54,22 +73,22 @@ python3 main.py
 ## Example Usage
 
 ```
-===================================================
+==================================================
                BANKING TOOLS
-===================================================
+==================================================
 
 1. Create New Account
 2. Login to Existing Account
 3. View All Accounts (Admin)
 4. Exit
-===================================================
+==================================================
 
 Enter your choice: 1
 
 --- Create New Account ---
 Enter account number: ACC001
 Enter account holder name: John Doe
-Enter password: ****
+Enter password (min 4 characters): ****
 Confirm password: ****
 Enter initial balance (0 or more): $1000
 
@@ -86,7 +105,7 @@ Account data is stored in `bank_data.json` in the project root directory. This f
 ## Security Features
 
 - **Password Hashing**: All passwords are hashed using SHA-256
-  - Note: For production use, consider using more secure algorithms like bcrypt or PBKDF2
+  - Note: For production use, consider using bcrypt or PBKDF2
 - **Authentication Required**: Must login to access account operations
 - **Transfer Verification**: Password required for money transfers
 - **Input Validation**: All inputs are validated before processing
@@ -97,27 +116,41 @@ Account data is stored in `bank_data.json` in the project root directory. This f
 
 ```
 ortfolio-Task-1-Banking-Tools/
-├── banking_tools/
-│   ├── __init__.py      # Package initialization
-│   ├── account.py       # Account class with operations
-│   └── bank.py          # Bank management system
-├── tests/               # Test files
-├── main.py             # Main CLI application
-├── README.md           # This file
-└── requirements.txt    # Python dependencies (none required)
+├── src/
+│   ├── main/java/com/banking/
+│   │   ├── Account.java          # Account class with operations
+│   │   ├── Bank.java             # Bank management system
+│   │   ├── BankingCLI.java       # CLI application
+│   │   └── Demo.java             # Demo script
+│   └── test/java/com/banking/
+│       ├── AccountTest.java      # Account tests (13 tests)
+│       └── BankTest.java         # Bank tests (15 tests)
+├── pom.xml                       # Maven configuration
+└── README.md                     # This file
 ```
 
 ## Testing
 
 Run the test suite:
 ```bash
-python3 tests/test_account.py
-python3 tests/test_bank.py
+mvn test
 ```
 
-Or use the setup script which runs all tests:
+Test results:
+- Account tests: 13 test cases
+- Bank tests: 15 test cases
+- Total: 28 tests, all passing
+
+## Building
+
+Create executable JAR:
 ```bash
-./setup.sh
+mvn package
+```
+
+The packaged JAR includes all dependencies and can be run with:
+```bash
+java -jar target/banking-tools.jar
 ```
 
 ## Contributing
